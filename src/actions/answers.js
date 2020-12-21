@@ -16,7 +16,7 @@ export function handleSaveAnswer({authedUser, id, answer}){
     return (dispatch)=>{
         dispatch(showLoading());
         return saveAnswer({authedUser,qid: id, answer})
-            .then(()=> dispatch(saveAnswerAction({authedUser,qid:id, answer})))
+            .then(()=> dispatch(saveAnswerAction({authedUser,id, answer})))
             .then(()=> dispatch(hideLoading()));
     }
 }

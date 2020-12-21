@@ -9,7 +9,7 @@ export default function users(state = {}, action) {
                 ...action.questions,
             };
         case SAVE_ANSWER:
-            return{
+            return {
                 ...state,
                 [action.id]: {
                     ...state[action.id],
@@ -17,7 +17,7 @@ export default function users(state = {}, action) {
                         ...state[action.id][action.answer],
                         votes: state[action.id][action.answer].votes.concat([
                             action.authedUser,
-                        ])
+                        ]),
                     },
                 },
             };
