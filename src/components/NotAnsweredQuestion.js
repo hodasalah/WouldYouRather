@@ -1,11 +1,13 @@
 import React from "react";
 
+import { Button } from "@material-ui/core";
+
 const NotAnsweredQuestion = (props) => {
     const handleChange = (val) => {
         props.changeVal(val);
     };
     const handleSubmit = (e) => {
-      e.preventDefault()
+        e.preventDefault();
         console.log("from not answered");
         props.makeSubmit();
     };
@@ -40,13 +42,14 @@ const NotAnsweredQuestion = (props) => {
                             />
                             {props.OpTwoText}
                         </label>
-                        <button
+                        <Button
+                            variant="contained"
+                            color="secondary"
                             type="submit"
-                            className="primary-btn"
                             disabled={props.disabled}
                         >
                             Submit
-                        </button>
+                        </Button>
                     </form>
                 </div>
             </div>
