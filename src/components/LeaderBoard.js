@@ -8,14 +8,14 @@ export class LeaderBoard extends Component {
         return (
             <div>
                 {Object.keys(users).map((uid) => {
-                    const answers= Object.keys(users[uid].answers).length
-                    const total =
-                    answers + users[uid].questions.length;
+                    const answers = Object.keys(users[uid].answers).length;
+                    const total = answers + users[uid].questions.length;
                     return (
                         <div key={uid} className="leaderboard-div">
                             <h4 className="leaderboard-header">
                                 {users[uid].name}
                             </h4>
+                            <hr />
                             <div className="leaderboard-inner">
                                 <div className="question-image-section">
                                     <img
@@ -25,17 +25,19 @@ export class LeaderBoard extends Component {
                                 </div>
                                 <div>
                                     <strong>
-                                        <p>
-                                            Answered Questions{" "}
+                                        <p style={{ fontSize: "20px" }}>
+                                            Answered Questions :
                                             <span>
+                                                {"  "}
                                                 {answers}
                                             </span>
                                         </p>
                                     </strong>
                                     <strong>
                                         <p>
-                                            Questions Created{" "}
+                                            Questions :
                                             <span>
+                                                {"  "}
                                                 {users[uid].questions.length}
                                             </span>
                                         </p>
