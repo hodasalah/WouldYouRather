@@ -13,6 +13,7 @@ import Header from './Header'
 import LoadingBar from "react-redux-loading";
 import { handleInitialData } from "./../actions/shared";
 import { Switch, Route } from "react-router-dom";
+import { PrivateRoute } from './PrivateRoute';
 
 class App extends React.Component {
     componentDidMount() {
@@ -34,12 +35,12 @@ class App extends React.Component {
                         <Container className="top">
                             <Switch>
                                 <Route path="/" exact component={Dashboard} />
-                                <Route
-                                    path="/question/:id"
+                                <PrivateRoute
+                                    path="/questions/:id"
                                     component={Question}
                                 />
                                 <Route
-                                    path="/new-question"
+                                    path="/add"
                                     component={NewQuestion}
                                 />
                                 <Route

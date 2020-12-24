@@ -1,5 +1,8 @@
 import React from "react";
-
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
 import { Button } from "@material-ui/core";
 
 const NotAnsweredQuestion = (props) => {
@@ -23,24 +26,26 @@ const NotAnsweredQuestion = (props) => {
                 <div className="question-quest-section">
                     <h4>Would you Rather?</h4>
                     <form onSubmit={handleSubmit}>
-                        <label className="question-options">
-                            <input
-                                type="radio"
-                                name="options"
-                                value="optionOne"
-                                onChange={(e) => handleChange(e.target.value)}
-                            />
-                            {props.OpOneText}
-                        </label>
-                        <label className="question-options">
-                            <input
-                                type="radio"
-                                name="options"
-                                value="optionTwo"
-                                onChange={(e) => handleChange(e.target.value)}
-                            />
-                            {props.OpTwoText}
-                        </label>
+                        <FormControl component="fieldset">
+                            <RadioGroup className="radioBtns">
+                                <FormControlLabel
+                                    value="optionOne"
+                                    control={<Radio />}
+                                    label={props.OpOneText}
+                                    onChange={(e) =>
+                                        handleChange(e.target.value)
+                                    }
+                                />
+                                <FormControlLabel
+                                    value="optionTwo"
+                                    control={<Radio />}
+                                    label={props.OpTwoText}
+                                    onChange={(e) =>
+                                        handleChange(e.target.value)
+                                    }
+                                />
+                            </RadioGroup>
+                        </FormControl>
                         <Button
                             variant="contained"
                             color="secondary"

@@ -67,30 +67,7 @@ class LogIn extends React.Component {
         dispatch(handleSetAuthedUser(this.state.val));
     };
     render() {
-        const options = [
-            { value: "", label: "None" },
-            {
-                value: "sarahedo",
-                label: "Sarah Edo",
-                avatar: "../images/sara.jpg",
-            },
-            {
-                value: "tylermcginnis",
-                label: "Tyler McGinnis",
-                avatar: "../images/tyler.jpg",
-            },
-            {
-                value: "johndoe",
-                label: "John Doe",
-                avatar: "../images/john.jpg",
-            },
-            {
-                value: "jodydo",
-                label: "Jody",
-                avatar: "../images/gody.jpg",
-            },
-        ];
-        const { classes } = this.props;
+        const { classes, users } = this.props;
         return (
             <Card className={classes.root}>
                 <CardContent>
@@ -121,20 +98,23 @@ class LogIn extends React.Component {
                             onChange={this.handleChange}
                             id="grouped-select"
                         >
-                            {options.map((op) => (
+                            <MenuItem value="" className={classes.menuItem}>
+                                <div> None </div>
+                            </MenuItem>
+                            {Object.keys(users).map((id) => (
                                 <MenuItem
-                                    key={op.value}
-                                    value={op.value}
+                                    key={id}
+                                    value={id}
                                     className={classes.menuItem}
                                 >
-                                    {op.avatar && (
+                                    {users[id].avatarURL && (
                                         <img
-                                            src={op.avatar}
+                                            src={`./${users[id].avatarURL}`}
                                             className={classes.selectImg}
-                                            alt={op.value}
+                                            alt={users[id].name}
                                         />
                                     )}
-                                    <div>{op.label}</div>
+                                    <div>{users[id].name}</div>
                                 </MenuItem>
                             ))}
                         </Select>
@@ -153,9 +133,9 @@ class LogIn extends React.Component {
         );
     }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ users }) => {
     return {
-        state,
+        users,
     };
 };
 export default connect(mapStateToProps)(withStyles(styles)(LogIn));

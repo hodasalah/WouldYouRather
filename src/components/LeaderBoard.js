@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 export class LeaderBoard extends Component {
     render() {
-        console.log(this.props.users);
         const { users } = this.props;
         return (
             <div>

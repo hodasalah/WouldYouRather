@@ -35,6 +35,9 @@ h4 {
     padding: 10px 60px !important;
     max-width: 40%;
 }
+.radioBtns {
+    margin: 20px 0 40px 0;
+}
 /* NAVBAR STYLES */
 .nav-container {
     background-color: #1f385c;
