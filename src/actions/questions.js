@@ -22,11 +22,14 @@ function addQuestion(question) {
 }
 
 //async save Question
-export function handleAddQuestion(optionOneText, optionTwoText, author) {
+export function handleAddQuestion({ optionOneText, optionTwoText, author }) {
     return (dispatch) => {
         dispatch(showLoading());
         return saveQuestion({ optionOneText, optionTwoText, author })
-            .then((question) => dispatch(addQuestion(question)))
+            .then((question) => {
+                dispatch(addQuestion(question));
+                return question;
+            })
             .then((question) => dispatch(addUserQuestion(question)))
             .then(() => dispatch(hideLoading()));
     };

@@ -9,6 +9,7 @@ import NewQuestion from "./NewQuestion";
 import LeaderBoard from "./LeaderBoard";
 import ErrorPage from "./ErrorPage";
 import Nav from "./Nav";
+import Header from './Header'
 import LoadingBar from "react-redux-loading";
 import { handleInitialData } from "./../actions/shared";
 import { Switch, Route } from "react-router-dom";
@@ -20,7 +21,7 @@ class App extends React.Component {
     render() {
         const { authedUser, loading } = this.props;
         if (authedUser === null) {
-            return <Route component={LogIn} />;
+            return <Route  component={LogIn} />;
         }
         return (
             <div className="App">
@@ -28,6 +29,7 @@ class App extends React.Component {
                     <LoadingBar />
                 ) : (
                     <React.Fragment>
+                        <Header />
                         <Nav />
                         <Container className="top">
                             <Switch>
@@ -37,7 +39,7 @@ class App extends React.Component {
                                     component={Question}
                                 />
                                 <Route
-                                    path="/newquestion"
+                                    path="/new-question"
                                     component={NewQuestion}
                                 />
                                 <Route
@@ -57,7 +59,6 @@ class App extends React.Component {
     }
 }
 const mapStateToProps = ({ authedUser, users }) => {
-    console.log(authedUser, users);
     return {
         authedUser,
         loading: users === null,

@@ -26,13 +26,12 @@ export class NewQuestion extends Component {
         this.setState(
             {
                 [e.target.name]: e.target.value,
-            },
-            () => console.log(this.state)
+            }
         );
     };
     handleSubmit = (e) => {
         e.preventDefault();
-        const { dispatch, authedUser } = this.props;
+        const { dispatch, authedUser, history } = this.props;
         const { optionOne, optionTwo } = this.state;
         const newQuestion = {
             optionOneText: optionOne,
@@ -40,6 +39,11 @@ export class NewQuestion extends Component {
             author: authedUser,
         };
         dispatch(handleAddQuestion(newQuestion));
+        this.setState({
+            optionOne: "",
+            optionTwo: "",
+        });
+        history.push("/");
     };
 
     render() {
@@ -50,53 +54,52 @@ export class NewQuestion extends Component {
         }
         const classes = this.props;
         return (
-            <form
-                className={classes.root}
-                noValidate
-                autoComplete="off"
-                onSubmit={this.handleSubmit}
-            >
-                <FormControl variant="outlined" fullWidth>
-                    <InputLabel htmlFor="component-outlined-1">
-                        First Option
-                    </InputLabel>
-                    <OutlinedInput
-                        name="optionOne"
-                        id="component-outlined-1"
-                        value={this.state.optionOne}
-                        onChange={this.handleChange}
-                        label="Name"
-                    />
-                </FormControl>
-                <FormControl variant="outlined" fullWidth>
-                    <InputLabel htmlFor="component-outlined-2">
-                        Second Option
-                    </InputLabel>
-                    <OutlinedInput
-                        name="optionTwo"
-                        id="component-outlined-2"
-                        value={this.state.optionTwo}
-                        onChange={this.handleChange}
-                        label="Name"
-                        fullWidth
-                    />
-                </FormControl>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                    disabled={disabled}
+            <div style={{textAlign:'center'}}>
+                <h2>Create New Question</h2>
+                <hr />
+                <h3>Would You Rather</h3>
+                <form
+                    className={classes.root}
+                    noValidate
+                    autoComplete="off"
+                    onSubmit={this.handleSubmit}
                 >
-                    Submit
-                </Button>
-                {/* <button
-                    type="submit"
-                    className="primary-btn"
-                    disabled={disabled}
-                >
-                    Submit
-                </button> */}
-            </form>
+                    <FormControl variant="outlined" fullWidth>
+                        <InputLabel htmlFor="component-outlined-1">
+                            First Option
+                        </InputLabel>
+                        <OutlinedInput
+                            name="optionOne"
+                            id="component-outlined-1"
+                            value={this.state.optionOne}
+                            onChange={this.handleChange}
+                            label="Name"
+                        />
+                    </FormControl>
+                    <p>... OR ...</p>
+                    <FormControl variant="outlined" fullWidth>
+                        <InputLabel htmlFor="component-outlined-2">
+                            Second Option
+                        </InputLabel>
+                        <OutlinedInput
+                            name="optionTwo"
+                            id="component-outlined-2"
+                            value={this.state.optionTwo}
+                            onChange={this.handleChange}
+                            label="Name"
+                            fullWidth
+                        />
+                    </FormControl>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        type="submit"
+                        disabled={disabled}
+                    >
+                        Submit
+                    </Button>
+                </form>
+            </div>
         );
     }
 }

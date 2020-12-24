@@ -24,22 +24,21 @@ export class Question extends Component {
         }
     };
     changeVal = (val) => {
-        this.setState({ value: val }, () => console.log(this.state.value));
+        this.setState({ value: val });
     };
     makeSubmit = () => {
         const { id, authedUser, dispatch } = this.props;
         const answer = this.state.value;
-        console.log(answer);
         dispatch(handleSaveAnswer({ authedUser, id, answer }));
         this.setState({ hasVoted: true });
     };
 
     render() {
-        console.log(this.props);
         // some variables
         const { question, users, authedUser, noID } = this.props;
         const totalVotes =
             question.optionOne.votes.length + question.optionTwo.votes.length;
+
         const OpOneVotes = question.optionOne.votes.length;
         const OpTwoVotes = question.optionTwo.votes.length;
         const onePercentage =

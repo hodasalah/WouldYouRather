@@ -1,53 +1,20 @@
-import { Container } from "@material-ui/core";
-import React, { Component } from "react";
-import { withRouter,  Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { handleSetAuthedUser } from "../actions/authedUser";
+import React from 'react'
+import {Link} from 'react-router-dom'
 
-class Nav extends Component {
-  handleSubmit = (e) => {
-    const { dispatch } = this.props;
-    e.preventDefault();
-    dispatch(handleSetAuthedUser(null));
-    this.props.history.push("/");
-  };
-  render() {
-    const { users, authedUser } = this.props;
+const Nav = () => {
     return (
-      <div className="nav-container">
-        <Container className="flex">
-          <h2 className="logo">WYR</h2>
-          <ul className="navbar">
+        <ul className="navbar">
             <li className="nav-link">
               <Link to="/">Home</Link>
             </li>
             <li className="nav-link">
-              <Link to="/newquestion">new Question</Link>
+              <Link to="/new-question">New Question</Link>
             </li>
             <li className="nav-link">
-              <Link to="/leaderboard">LeaderBoard</Link>
+              <Link to="/leaderboard">Leader Board</Link>
             </li>
           </ul>
-          <div className="user-info">
-            <img
-              src={`/${users[authedUser].avatarURL}`}
-              alt={`avatar for ${users[authedUser].avatar}`}
-              className="nav-avatar"
-            />
-            <p>{users[authedUser].name}</p>
-            <button className="sign-out" onClick={this.handleSubmit}>
-              Sign out
-            </button>
-          </div>
-        </Container>
-      </div>
-    );
-  }
+    )
 }
-const mapStateToProps = ({ users, authedUser }) => {
-  return {
-    authedUser,
-    users,
-  };
-};
-export default withRouter(connect(mapStateToProps)(Nav));
+
+export default Nav

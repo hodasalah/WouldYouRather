@@ -80,7 +80,7 @@ const mapStateToProps = ({ users, questions, authedUser }) => {
     );
     const unAnswered = Object.keys(questions)
         .filter((id) => !answered.includes(id))
-        .sort((a, b) => a.timeStamp - b.timeStamp);
+        .sort((a, b) => b.timeStamp - a.timeStamp);
 
     return {
         answered,

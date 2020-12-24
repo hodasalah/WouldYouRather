@@ -2,7 +2,7 @@ import React from "react";
 
 const AnsweredQuestion = (props) => {
     return (
-        <div>
+        <div className="answered">
             <h3 className="result-header">Asked By {props.name}</h3>
             <div className="result-div">
                 <h4 className="result-div-header">Results</h4>

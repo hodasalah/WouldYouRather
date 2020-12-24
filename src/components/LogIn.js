@@ -21,7 +21,7 @@ const styles = () => ({
     },
     root: {
         margin: "50px auto",
-        padding: "40px 20px",
+        padding: "20px",
         maxWidth: "80%",
         textAlign: "center",
     },
@@ -45,8 +45,8 @@ const styles = () => ({
     },
 
     selectImg: {
-        maxWidth: "60px",
-        maxHeight: "60px",
+        width: "60px",
+        height: "60px",
         borderRadius: "50%",
     },
 });
@@ -57,17 +57,13 @@ class LogIn extends React.Component {
     };
 
     handleChange = (e) => {
-        this.setState(
-            {
-                val: e.target.value,
-            },
-            () => console.log(this.state.val)
-        );
+        this.setState({
+            val: e.target.value,
+        });
     };
     handleSubmit = (e) => {
         e.preventDefault();
         const { dispatch } = this.props;
-        console.log(this.state.val);
         dispatch(handleSetAuthedUser(this.state.val));
     };
     render() {
@@ -88,6 +84,11 @@ class LogIn extends React.Component {
                 label: "John Doe",
                 avatar: "../images/john.jpg",
             },
+            {
+                value: "jodydo",
+                label: "Jody",
+                avatar: "../images/gody.jpg",
+            },
         ];
         const { classes } = this.props;
         return (
@@ -96,7 +97,7 @@ class LogIn extends React.Component {
                     <CardMedia
                         component="img"
                         alt="would-you-rather"
-                        height="400px"
+                        height="500px"
                         image="../images/bg.jpg"
                         title="would-you-rather"
                     />
@@ -153,7 +154,6 @@ class LogIn extends React.Component {
     }
 }
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         state,
     };

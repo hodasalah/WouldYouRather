@@ -8,7 +8,6 @@ const NotAnsweredQuestion = (props) => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("from not answered");
         props.makeSubmit();
     };
     return (
